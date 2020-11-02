@@ -1,0 +1,19 @@
+
+{
+  "language": "csharp",
+  "mono": "none",
+  "sudo": "required",
+  "dist": "xenial",
+  "dotnet": 3.1,
+  "solution": "iDelivery.sln",
+  "script": [
+    "dotnet restore",
+    "dotnet test",
+    "dotnet publish -c Release -r win-x86 --output ./dist iDelivery.sln --self-contained false",
+    "npm init -y",
+    "npm install --save-dev ftp-deploy"
+  ],
+  "after_success": [
+    "node deploy-script.js"
+  ]
+}
